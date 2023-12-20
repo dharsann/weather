@@ -3,8 +3,7 @@ import requests
 
 app = Flask(__name__)
 
-# Replace 'YOUR_API_KEY' with your actual WeatherAPI.com API key
-API_KEY = 'API_KEY'
+API_KEY = 'YOUR_WEATHER_API_KEY'  # Replace with your actual weather API key
 
 @app.route('/', methods=['GET', 'POST'])
 def weather():
@@ -31,6 +30,12 @@ def get_weather(city):
             'temperature': data['current']['temp_c'],
             'humidity': data['current']['humidity'],
             'wind_speed': data['current']['wind_kph'],
+            'feels_like': data['current']['feelslike_c'],
+            'visibility': data['current']['vis_km'],
+            'pressure': data['current']['pressure_mb'],
+            'uv_index': data['current']['uv'],
+            'cloud': data['current']['cloud'],
+            'precipitation': data['current'].get('precip_mm', 'N/A'),
         }
         return weather
 
